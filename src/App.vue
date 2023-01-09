@@ -2,7 +2,7 @@
   <header class="header">
  
     <div class="app">
-        <RouterLink class="router home" to="/">Home</RouterLink>
+        <RouterLink class="search" to="/">🔍</RouterLink>
         <header>|</header>
         <RouterLink class="router about" to="/about">About</RouterLink>
     </div>
@@ -27,6 +27,10 @@
   a {
     text-decoration: none;
     color: var(--fontcolormain);
+  }
+
+  .search {
+    margin: 0 3rem;
   }
   .router {
     margin: 0 3rem;
