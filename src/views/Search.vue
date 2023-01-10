@@ -2,7 +2,7 @@
    <div class="home">
    
       <div class="search" id="search">
-      <form class="searchBox" id="searchBox" @input="getData(x)">
+      <form class="searchBox" id="searchBox" @submit ="getData(x)">
       <input type="text" class="searchInput" placeholder="Search..." name="searchInput" id="searchInput" >
       </form>
 
@@ -32,7 +32,6 @@
         return {
             count: 0,
             clicked: false,
-            key: "https://imdb-api.com/en/API/SearchMovie/k_jtrut4iw/inception",
         };
     },
     methods: {
@@ -42,8 +41,10 @@
       console.log(input);
       let key = `https://imdb-api.com/en/API/SearchMovie/k_jtrut4iw/${input}`;
       console.log(key);
+      this.getInfo(key);  
+      },
+      async getInfo (key) {
 
-      const getInfo = async function (key) {
          try {
 
             movieError.innerText = "";
@@ -54,31 +55,28 @@
             console.log(data);   
 
             if (!data.results[0]) {
-                  movieError.innerText = "Unable to find specified movie";
-                  movieError.style.opacity = 1;
-                  return;
+               movieError.innerText = "Unable to find specified movie";
+               movieError.style.opacity = 1;
+               return;
             } else {
 
-            const movieTitle = data.results[0]['title'];
-            const movieImage = data.results[0]['image'];
-            console.log(movieTitle);
-            console.log(moviePoster);
-            movieName.innerHTML = movieTitle;
-            moviePoster.src = movieImage;
-            moviePoster.style.opacity = 1;
+               const movieTitle = data.results[0]['title'];
+               const movieImage = data.results[0]['image'];
+               console.log(movieTitle);
+               console.log(moviePoster);
+               movieName.innerHTML = movieTitle;
+               moviePoster.src = movieImage;
+               moviePoster.style.opacity = 1;
 
             }
 
          } catch (error) {
             console.log(error);
-            console.log(data.errorMessage);
             movieError.innerText = "Something went wrong";
             movieError.style.opacity = 1;
             return;
          }
-         }
-         getInfo(key)
-      },
+      }
     }
 }
    
