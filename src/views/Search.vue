@@ -41,43 +41,33 @@
       console.log(input);
       let key = `https://imdb-api.com/en/API/SearchMovie/k_jtrut4iw/${input}`;
       console.log(key);
-      this.getInfo(key);  
+      this.accessAPI(key);
       },
-      async getInfo (key) {
+      accessAPI (key) {
+         const response = fetch(key)
+         console.log(response);
+         const data = response.json;
+         this.getInfo(data);
+      },
+      getInfo (data) {
 
          try {
-
-            movieError.innerText = "";
-            movieError.style.opacity = 0;
-
-            const response = await fetch(key);
-            const data = await response.json();
-            console.log(data);   
-
             if (!data.results[0]) {
-               movieError.innerText = "Unable to find specified movie";
-               movieError.style.opacity = 1;
+               console.log("No data")
                return;
             } else {
-
-               const movieTitle = data.results[0]['title'];
-               const movieImage = data.results[0]['image'];
-               console.log(movieTitle);
-               console.log(moviePoster);
-               movieName.innerHTML = movieTitle;
-               moviePoster.src = movieImage;
-               moviePoster.style.opacity = 1;
-
+               console.log(data);
             }
 
          } catch (error) {
-            console.log(error);
-            movieError.innerText = "Something went wrong";
-            movieError.style.opacity = 1;
+            console.log(error);  
             return;
          }
       }
-    }
+    },
+    async created (input) {
+      await this.accessAPI(`https://imdb-api.com/en/API/SearchMovie/k_jtrut4iw/${input}`);
+    },
 }
    
 </script>
