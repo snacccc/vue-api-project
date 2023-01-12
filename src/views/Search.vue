@@ -2,9 +2,7 @@
    <div class="home">
    
       <div class="search" id="search">
-      <form class="searchBox" id="searchBox" @submit ="getData(x)">
-      <input type="text" class="searchInput" placeholder="Search..." name="searchInput" id="searchInput" >
-      </form>
+      <Searchbar></Searchbar>
 
       <header class="movieError" id="movieError"></header>
 
@@ -22,11 +20,13 @@
 
 
    import Button from "../components/Button.vue";
+   import SearchBar from "../components/SearchBar.vue";
 
    export default {
-    name: "search",
+    name: "searchBar",
     compontents: {
         Button,
+        SearchBar,
     },
     data() {
         return {
@@ -36,10 +36,9 @@
     },
     methods: {
       getData(x) {
-      searchInput.input;    
-      let input = searchInput.value;
-      console.log(input);
-      let key = `https://imdb-api.com/en/API/SearchMovie/k_jtrut4iw/${input}`;
+      let input = x
+      console.log(input)
+      let key = `https://imdb-api.com/en/API/SearchMovie/k_jtrut4iw/${x}`;
       console.log(key);
       this.accessAPI(key);
       },
@@ -77,14 +76,6 @@
       padding: 1rem;
       margin: 1rem;
       color: var(--fontcolormain);
-   }
-
-   .searchInput {
-      height: 4rem;
-      width: 32rem;
-      font-size: 1.5rem;
-      border: 0.3rem solid;
-      border-color: var(--accent);
    }
 
    .movieError {
