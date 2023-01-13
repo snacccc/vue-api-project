@@ -2,7 +2,7 @@
    <div class="home">
    
       <div class="search" id="search">
-      <Searchbar></Searchbar>
+      <SearchBar></SearchBar>
 
       <header class="movieError" id="movieError"></header>
 
@@ -23,7 +23,7 @@
    import SearchBar from "../components/SearchBar.vue";
 
    export default {
-    name: "searchBar",
+    name: "Search",
     compontents: {
         Button,
         SearchBar,
