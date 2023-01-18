@@ -2,7 +2,9 @@
    <div class="home">
    
       <div class="search" id="search">
-      <SearchBar></SearchBar>
+         <form class="searchBox" id="searchBox">
+         <input type="text" class="searchInput" placeholder="Search..." name="searchInput" id="searchInput" >
+         </form>
 
       <header class="movieError" id="movieError"></header>
 
@@ -20,13 +22,11 @@
 
 
    import Button from "../components/Button.vue";
-   import SearchBar from "../components/SearchBar.vue";
 
    export default {
     name: "Search",
     compontents: {
         Button,
-        SearchBar,
     },
     data() {
         return {

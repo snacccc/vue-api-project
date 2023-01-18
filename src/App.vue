@@ -4,7 +4,7 @@
     <div class="app">
         <RouterLink class="search" to="/">🔍</RouterLink>
         <header>|</header>
-        <RouterLink class="router about" to="/about">About</RouterLink>
+        <RouterLink class="router popular" to="/popular">Popular</RouterLink>
     </div>
   </header>
 
