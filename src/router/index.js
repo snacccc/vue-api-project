@@ -11,7 +11,7 @@ const router = createRouter({
     },
     {
       path: '/popular',
-      name: 'popular',
+      name: 'Popular',
       component: () => import('../views/Popular.vue')
     },
   ]
