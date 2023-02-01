@@ -1,6 +1,0 @@
-@import 'components/variables.css';
-
-body {
-  margin: 0rem;
-  background-color: var(--primarybackground);
-}
