@@ -5,13 +5,13 @@
       </header>
    
       <div class="buttons">
-         <Button @click="getJoke()">
-            Generate Joke
+         <Button @click="getObject()">
+            Play
          </Button>
       </div>
 
-      <div v-if="joke">
-         <p> {{ joke }} </p> 
+      <div v-if="object">
+         <p> {{ object }} </p> 
       </div>
 
    </div>
@@ -19,6 +19,7 @@
 
 <script>
 
+   import axios from 'axios';
    import Button from "../components/Button.vue";
 
    export default {
@@ -28,16 +29,31 @@
     },
     data() {
         return {
-            joke: ''
+            objectOne: '',
+            objectTwo: '',
         };
     },
     methods: {
-      async getJoke () {
-         const info= await this.$http.get('')
-         this joke = info.
+      async getObject () {
+         const response = await axios.get('https://rps101.pythonanywhere.com/api/v1/objects/all')
+         console.log(response)
+
+         const info = response.data
+
+         const randomNum = function () {
+            return Math.floor(Math.random() * 100);
+         }
+
+
+         const number = randomNum()
+         console.log(number)
+
+         const objectOne = info[number]
+         console.log(objectOne)
+
       }
     }
-}
+   }
    
 </script>
 
