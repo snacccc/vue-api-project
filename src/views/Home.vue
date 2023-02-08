@@ -6,8 +6,8 @@
    
       <div class="buttons">
          
-         <Retrieve ref="retrieveRef"/>
-         <Button @click="retrieveRef.getObject()">Play</Button>
+         <Retrieve ref="retrieve"/>
+         <Button @click="getObject()">Play</Button>
 
       </div>
 
@@ -31,10 +31,33 @@
     },
     data() {
         return {
+            objectOne: '',
             objectTwo: '',
         };
     },
+      methods: {
+         async getObject () {
+         const response = await axios.get('https://rps101.pythonanywhere.com/api/v1/objects/all')
+         console.log(response)
+
+         const info = response.data
+
+         const randomNum = function () {
+            return Math.floor(Math.random() * 100);
+         }
+
+
+         const number = randomNum()
+         console.log(number)
+
+         const object = info[number]
+         console.log(object)
+
+         let objectOne = object
+      }
+    }
    }
+
    
 </script>
 

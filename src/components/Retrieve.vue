@@ -4,7 +4,6 @@
 
  export default {
   name: 'Retrieve',
-  props: ['inputs'],
   data () {
     return {
       object: '',
