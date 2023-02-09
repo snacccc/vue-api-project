@@ -7,12 +7,13 @@
       <div class="buttons">
          
          <Retrieve ref="retrieve"/>
-         <Button @click="getObject()">Play</Button>
+         <Button @click="getObjects()">Play</Button>
 
       </div>
 
-      <div v-if="object">
-         <p> {{ object }} </p> 
+      <div v-if="objects">
+         <p> {{ objects[0] }} vs. {{ objects[1] }}</p>
+          
       </div>
 
    </div>
@@ -20,6 +21,7 @@
 
 <script>
 
+   import axios from 'axios'
    import Button from "../components/Button.vue";
    import Retrieve from '../components/Retrieve.vue';
 
@@ -31,12 +33,11 @@
     },
     data() {
         return {
-            objectOne: '',
-            objectTwo: '',
+            objects: []
         };
     },
       methods: {
-         async getObject () {
+         async getObjects () {
          const response = await axios.get('https://rps101.pythonanywhere.com/api/v1/objects/all')
          console.log(response)
 
@@ -47,13 +48,21 @@
          }
 
 
-         const number = randomNum()
-         console.log(number)
+         const firstNumber = randomNum()
+         console.log(firstNumber)
 
-         const object = info[number]
-         console.log(object)
+         const objectOne = info[firstNumber]
+         console.log(objectOne)
 
-         let objectOne = object
+         const secondNumber = randomNum()
+         console.log(secondNumber)
+
+         const objectTwo = info[secondNumber]
+         console.log(objectTwo)
+
+         this.objects.splice(0, 2)
+         this.objects.push(objectOne, objectTwo)
+
       }
     }
    }
