@@ -1,16 +1,31 @@
 <template>
   <div class="about">
     
-    <header class="header">
-      This is the about page
-    </header>
-
-    <p class="description">
-      Why are you still here? This website is terrible. I have no idea what I'm doing. I'm just glad at least this is working.
-    </p>
-
+    <select class="rpsChoice" list='rpsChoiceList'>
+      <option v-for="object in response">
+        {{ object }}
+      </option>
+    </select>
+    
   </div>
 </template>
+
+<script>
+
+  import axios from 'axios'
+
+  const response = await axios.get('https://rps101.pythonanywhere.com/api/v1/objects/all'); 
+
+  export default {
+    name: 'testing',
+    data () {
+      return {
+        rpsList: []
+      }
+    }
+  }
+
+</script>
 
 <style scoped>
 

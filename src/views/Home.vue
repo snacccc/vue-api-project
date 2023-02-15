@@ -13,6 +13,7 @@
 
       <div v-if="objects">
          <p> {{ objects[0] }} vs. {{ objects[1] }}</p>
+         <p> {{ winner }} {{ outcome }} {{ loser }} </p>
           
       </div>
 
@@ -33,7 +34,11 @@
     },
     data() {
         return {
-            objects: []
+            objects: [],
+            winner: '',
+            outcome: '',
+            loser: '',
+
         };
     },
       methods: {
@@ -63,7 +68,18 @@
          this.objects.splice(0, 2)
          this.objects.push(objectOne, objectTwo)
 
-      }
+         this.getOutcome(objectOne, objectTwo)
+      },
+         async getOutcome (objectOne, objectTwo) {
+            const response = await axios.get(`https://rps101.pythonanywhere.com/api/v1/match?object_one=${objectOne}&object_two=${objectTwo}`)
+            
+            const info = response.data
+            console.log(info)
+
+            this.winner.push(info.winner)
+            this.outcome.push(info.outcome)
+            this.loser.push(info.loser)
+         }
     }
    }
 
